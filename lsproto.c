@@ -45,16 +45,6 @@ LUALIB_API void luaL_setfuncs (lua_State *L, const luaL_Reg *l, int nup) {
 #if LUA_VERSION_NUM < 503
 
 #if LUA_VERSION_NUM < 502
-static int64_t lua_tointegerx(lua_State *L, int idx, int *isnum) {
-	if (lua_isnumber(L, idx)) {
-		if (isnum) *isnum = 1;
-		return (int64_t)lua_tointeger(L, idx);
-	}
-	else {
-		if (isnum) *isnum = 0;
-		return 0;
-	}
-}
 
 static int lua_absindex (lua_State *L, int idx) {
 	if (idx > 0 || idx <= LUA_REGISTRYINDEX)
@@ -748,7 +738,8 @@ ldefault(lua_State *L) {
 	return 1;
 }
 
-LUAMOD_API int
+
+LUALIB_API int
 luaopen_sproto_core(lua_State *L) {
 #ifdef luaL_checkversion
 	luaL_checkversion(L);
