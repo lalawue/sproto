@@ -21,7 +21,7 @@ all: sproto.so
 	make sproto.so "DLLFLAGS = $(CFLAGS)"
 
 sproto.so : sproto.c lsproto.c
-	${CC} -O2 -Wall $(CFLAGS) -o $@ $^ -I$(LUA_JIT_INCLUDE_PATH) 
+	${CC} -O2 -Wall $(CFLAGS) -o $@ $^ -I$(LUAJIT_INC_DIR) 
 
 clean :
 	rm -f sproto.so
